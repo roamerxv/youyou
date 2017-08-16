@@ -1,0 +1,29 @@
+.input-span {
+    border-top: 0px !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-bottom: 0px !important;
+    background-color: transparent !important;
+
+}
+
+div .row{
+    margin:10px !important;
+}
+
+#building_no {
+    width: 50px;
+}
+
+#building_no {
+    width: 50px;
+}
+
+#root_no {
+    width: 70px;
+}
+
+.btn-save {
+    margin-top: -7px;
+    float: right;
+}
