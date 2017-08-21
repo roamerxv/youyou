@@ -7,8 +7,16 @@
 
 }
 
-div .row{
-    margin:10px !important;
+div .row {
+    margin: 10px !important;
+}
+
+div .command-panel {
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    margin-top: -7px;
+    margin-left: -4px;
 }
 
 #building_no {
@@ -26,4 +34,8 @@ div .row{
 .btn-save {
     margin-top: -7px;
     float: right;
+}
+
+.btn-return{
+    float:right;
 }

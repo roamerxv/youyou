@@ -7,8 +7,8 @@ import javax.persistence.*;
  * @create 2017-08-2017/8/18  下午1:11
  */
 @Entity
-@Table(name = "living_type", schema = "youyou", catalog = "")
-public class LivingTypeEntity {
+@Table(name = "approve_type", schema = "youyou", catalog = "")
+public class ApproveTypeEntity {
     private String id;
     private String name;
 
@@ -23,7 +23,7 @@ public class LivingTypeEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 32)
+    @Column(name = "name", nullable = false, length = 128)
     public String getName() {
         return name;
     }
@@ -37,7 +37,7 @@ public class LivingTypeEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LivingTypeEntity that = (LivingTypeEntity) o;
+        ApproveTypeEntity that = (ApproveTypeEntity) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

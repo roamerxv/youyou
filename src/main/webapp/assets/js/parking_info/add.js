@@ -1,13 +1,44 @@
+var BaseObj = {
+    createNew: function () {
+        var baseObj = {};
+        baseObj.toString = function () {
+            return JSON.stringify(baseObj);
+        }
+        return baseObj;
+    }
+}
+
+// 车位信息
 var ParkingInfo = {
     createNew: function () {
-        var parkingInfo = {};
-        parkingInfo.toString = function () {
-            return JSON.stringify(parkingInfo);
-        }
+        var parkingInfo = BaseObj.createNew();
         return parkingInfo;
     }
 };
 
+//居住类型
+var LivingTypeEntity = {
+    createNew: function(){
+        var livingTypeEntity =BaseObj.createNew();
+        return livingTypeEntity;
+    }
+}
+
+//停车位类型
+var ParkingTypeEntity = {
+    createNew: function(){
+        var parkingTypeEntity = BaseObj.createNew();
+        return parkingTypeEntity ;
+    }
+}
+
+//审核状态
+var ApproveTypeEntity = {
+    createNew: function(){
+        var approveTypeEntity = BaseObj.createNew();
+        return approveTypeEntity ;
+    }
+}
 
 function fun_submit() {
     Logger.debug("保存记录！");
@@ -17,6 +48,23 @@ function fun_submit() {
     parkingInfo.buildingNo = $("#building_no_select2 option:selected").val();
     parkingInfo.roomNo = $("#room_no").val();
     parkingInfo.registerDate = $("#register_date").val();
+    Logger.debug($("#living_type_select2 option:selected").val());
+
+    var livingTypeEntity = LivingTypeEntity.createNew();
+    livingTypeEntity.id = $("#living_type_select2 option:selected").val();
+    parkingInfo.livingTypeByLivingType = livingTypeEntity ;
+
+    var parkingTypeEntity = ParkingTypeEntity.createNew();
+    parkingTypeEntity.id = $("#parking_type_select2 option:selected").val();
+    parkingInfo.parkingTypeByParkingType = parkingTypeEntity;
+
+    var approveTypeEntity = ApproveTypeEntity.createNew();
+    approveTypeEntity.id = $("#approve_type_select2 option:selected").val();
+    parkingInfo.approveTypeByApproveType = approveTypeEntity;
+
+    parkingInfo.parkingNo = $("#parking_no").val();
+    parkingInfo.carNo = $("#car_no").val();
+
     Logger.debug(parkingInfo.toString());
     $.ajax({
         type: 'post',
@@ -26,7 +74,7 @@ function fun_submit() {
         contentType: "application/json",
         dataType: 'json',//默认为预期服务器返回的数据类型
         success: function (data) {
-            console.log(data.data.completePercent);
+            window.location= contextPath+"/";
         },
         error: function (data) {
 

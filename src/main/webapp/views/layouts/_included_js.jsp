@@ -37,7 +37,9 @@
 <link href="<%=request.getContextPath()%>/assets/css/lib/Select2-4.0.3/select2.min.css" rel="stylesheet">
 <%----%>
 
-
+<%--使用提示框的组件 bootboxjs--%>
+<script src="<%=request.getContextPath()%>/assets/js/lib/bootbox/bootbox.min.js"></script>
+<%----%>
 
 <%--引入显示错误信息的组件所需要的 js 文件和 css 文件--%>
 <%@include file="../component/showExceptionJSComponent.jsp" %>

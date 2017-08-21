@@ -40,8 +40,10 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
     <div class="am-topbar-brand">
-        <strong>中祥龙柏苑</strong>
-        <small>车位信息公示</small>
+        <a href="<%=request.getContextPath()%>/" >
+            <strong>中祥龙柏苑</strong>
+            <small>车位信息公示</small>
+        </a>
     </div>
 
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
@@ -49,8 +51,12 @@
             class="am-icon-bars"></span></button>
 
     <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+            <li class="am-hide-sm-only">
+                <a href="<%=request.getContextPath()%>/views/system/systemLoggerIndex.jsp"  id="show_log">
+                    <span class="am-icon-table"></span> <span class="admin-fullText">显示日志</span>
+                </a>
+            </li>
             <li class="am-dropdown" data-am-dropdown>
                 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
                     <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
@@ -58,7 +64,8 @@
                 <ul class="am-dropdown-content">
                     <li><a href="#"><span class="am-icon-user"></span> 资料</a></li>
                     <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>
-                    <li><a href="<%=request.getContextPath()%>/views/parking_info/add.jsp"><span class="am-icon-car"></span> 增加</a></li>
+                    <li><a href="<%=request.getContextPath()%>/views/parking_info/add.jsp"><span
+                            class="am-icon-car"></span> 增加</a></li>
                     <li><a href="#"><span class="am-icon-power-off"></span> 退出</a></li>
                 </ul>
             </li>

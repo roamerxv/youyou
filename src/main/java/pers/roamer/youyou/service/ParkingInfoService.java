@@ -9,9 +9,9 @@ import pers.roamer.youyou.entity.ParkingInfoEntity;
 import pers.roamer.youyou.repository.IParkingInfoRepository;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-import java.util.Date;
 
 
 /**
@@ -43,4 +43,16 @@ public class ParkingInfoService {
         return m_rtn;
     }
 
+    public void delete(String id) throws ServiceException{
+        try{
+            iParkingInfoRepository.delete(id);
+        }catch (Exception e){
+            throw new ServiceException(e.getMessage());
+        }
+
+    }
+
+    public ParkingInfoEntity findByID(String id) throws ServiceException{
+        return iParkingInfoRepository.findById(id) ;
+    }
 }

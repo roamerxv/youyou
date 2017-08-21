@@ -13,11 +13,12 @@
 
 <script src="<%=request.getContextPath()%>/assets/js/lib/moment-2.18.1/moment.min.js"></script>
 
-<form class="am-form" id="frm" onsubmit="fun_submit()">
+<form class="am-form" id="frm"  target="nm_iframe" onsubmit="fun_submit()">
     <fieldset>
         <div class="panel panel-default">
             <div class="panel-heading">停车位信息登记
-                <input class="btn btn-success btn-save" type="submit" value="保存"/>
+                    <input class="btn btn-success btn-save" type="submit" value="保存"/>
+                    <a href="<%=request.getContextPath()%>/">返回列表</a>
             </div>
         </div>
 
@@ -54,21 +55,31 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="input-group">
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-addon input-span" id="sizing-addon3">停车位号</span>
-                                <input type="text" class="form-control" placeholder=""
-                                       aria-describedby="sizing-addon3"  style="width: 40px"
-                                       maxlength="2">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-2">
                         <div class="input-group">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon6">停车位类型</span>
                                 <%@ include file="../modules/_parking_type.jsp" %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon input-span" id="sizing-addon3">停车位号</span>
+                                <input type="text" class="form-control" placeholder=""
+                                       aria-describedby="sizing-addon3"  id="parking_no" style="width: 40px"
+                                       maxlength="2">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon input-span" id="sizing-addon6">车牌号</span>
+                                <input type="text" class="form-control" id="car_no"  placeholder="输入车牌号"
+                                       aria-describedby="sizing-addon6"  required="required" style="width: 150px"
+                                       maxlength="8">
                             </div>
                         </div>
                     </div>
@@ -79,6 +90,14 @@
                                 <input type="date" class="form-control edit-input" id="register_date" placeholder=""
                                        aria-describedby="sizing-addon6" 
                                        maxlength="18">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon input-span" id="sizing-addon3">审核状态</span>
+                                <%@ include file="../modules/_approve_type.jsp" %>
                             </div>
                         </div>
                     </div>
@@ -159,16 +178,6 @@
                     <div class="col-lg-2">
                         <div class="input-group">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-addon input-span" id="sizing-addon6">车牌号</span>
-                                <input type="text" class="form-control" placeholder="输入车牌号"
-                                       aria-describedby="sizing-addon6"  style="width: 150px"
-                                       maxlength="8">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="input-group">
-                            <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon6">行驶证登记日期</span>
                                 <input type="date" class="form-control" placeholder=""
                                        aria-describedby="sizing-addon6" 
@@ -204,4 +213,7 @@
     </fieldset>
 
 </form>
+
+<iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+
 </body>

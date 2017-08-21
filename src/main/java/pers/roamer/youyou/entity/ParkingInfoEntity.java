@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * @author roamer - 徐泽宇
- * @create 2017-08-2017/8/15  下午6:11
+ * @create 2017-08-2017/8/18  下午1:11
  */
 @Entity
 @Table(name = "parking_info", schema = "youyou", catalog = "")
@@ -31,6 +31,7 @@ public class ParkingInfoEntity {
     private Timestamp updatedAt;
     private ParkingTypeEntity parkingTypeByParkingType;
     private LivingTypeEntity livingTypeByLivingType;
+    private ApproveTypeEntity approveTypeByApproveType;
 
     @Id
     @Column(name = "id", nullable = false, length = 36)
@@ -288,5 +289,15 @@ public class ParkingInfoEntity {
 
     public void setLivingTypeByLivingType(LivingTypeEntity livingTypeByLivingType) {
         this.livingTypeByLivingType = livingTypeByLivingType;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "approve_type", referencedColumnName = "id")
+    public ApproveTypeEntity getApproveTypeByApproveType() {
+        return approveTypeByApproveType;
+    }
+
+    public void setApproveTypeByApproveType(ApproveTypeEntity approveTypeByApproveType) {
+        this.approveTypeByApproveType = approveTypeByApproveType;
     }
 }

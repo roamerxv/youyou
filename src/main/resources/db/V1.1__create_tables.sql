@@ -1,3 +1,45 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 阿里云-youyou 数据库
+ Source Server Type    : MySQL
+ Source Server Version : 50634
+ Source Host           : rds8a08c30s41zzv710xo.mysql.rds.aliyuncs.com:3306
+ Source Schema         : youyou
+
+ Target Server Type    : MySQL
+ Target Server Version : 50634
+ File Encoding         : 65001
+
+ Date: 18/08/2017 13:00:19
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for approve_type
+-- ----------------------------
+CREATE TABLE `approve_type` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL,
+  `name` varchar(128) COLLATE utf8_bin NOT NULL COMMENT '审批结果',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审批结果类型表';
+
+-- ----------------------------
+-- Records of approve_type
+-- ----------------------------
+BEGIN;
+INSERT INTO `approve_type` VALUES ('1010', '未提交资料');
+INSERT INTO `approve_type` VALUES ('0000', '通过');
+INSERT INTO `approve_type` VALUES ('1000', '未通过');
+INSERT INTO `approve_type` VALUES ('1011', '提交资料不全');
+INSERT INTO `approve_type` VALUES ('1020', '资料不符');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for business_log
+-- ----------------------------
 CREATE TABLE `business_log` (
   `id` varchar(40) CHARACTER SET utf8 NOT NULL,
   `operator` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -16,11 +58,6 @@ CREATE TABLE `business_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='业务方法调用日志';
 
-SET FOREIGN_KEY_CHECKS = 1;
-
-
-
-
 -- ----------------------------
 -- Table structure for living_type
 -- ----------------------------
@@ -37,30 +74,6 @@ BEGIN;
 INSERT INTO `living_type` VALUES ('0001', '自住');
 INSERT INTO `living_type` VALUES ('0020', '租赁');
 COMMIT;
-
-
--- ----------------------------
--- Table structure for parking_type
--- ----------------------------
-CREATE TABLE `parking_type` (
-  `id` varchar(36) COLLATE utf8_bin NOT NULL COMMENT '主键 id',
-  `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '停车位类型',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ----------------------------
--- Records of parking_type
--- ----------------------------
-BEGIN;
-INSERT INTO `parking_type` VALUES ('0010', '小区地下');
-INSERT INTO `parking_type` VALUES ('0011', '小区地面');
-INSERT INTO `parking_type` VALUES ('0020', '街坊路');
-INSERT INTO `parking_type` VALUES ('0030', '康师傅地下');
-COMMIT;
-
-SET FOREIGN_KEY_CHECKS = 1;
-
-
 
 -- ----------------------------
 -- Table structure for parking_info
@@ -81,18 +94,36 @@ CREATE TABLE `parking_info` (
   `parking_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '停车位类型',
   `living_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '居住类型',
   `comment` text COLLATE utf8_bin COMMENT '备注',
-  `register_date` DATE NOT NULL COMMENT '车位资料登记时间',
+  `approve_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '审批结果',
+  `register_date` date NOT NULL COMMENT '车位资料登记时间',
   `created_by` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '录入人员',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '录入时间',
   `updated_by` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '更新人',
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   KEY `living_type_fk` (`living_type`),
   KEY `parking_type_fk` (`parking_type`),
+  KEY `approve_type_fk` (`approve_type`) USING BTREE,
+  CONSTRAINT `approve_type_fk` FOREIGN KEY (`approve_type`) REFERENCES `approve_type` (`id`),
   CONSTRAINT `living_type_fk` FOREIGN KEY (`living_type`) REFERENCES `living_type` (`id`),
   CONSTRAINT `parking_type_fk` FOREIGN KEY (`parking_type`) REFERENCES `parking_type` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-SET FOREIGN_KEY_CHECKS = 1;
+-- ----------------------------
+-- Table structure for parking_type
+-- ----------------------------
+CREATE TABLE `parking_type` (
+  `id` varchar(36) COLLATE utf8_bin NOT NULL COMMENT '主键 id',
+  `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '停车位类型',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-
+-- ----------------------------
+-- Records of parking_type
+-- ----------------------------
+BEGIN;
+INSERT INTO `parking_type` VALUES ('0010', '小区地下');
+INSERT INTO `parking_type` VALUES ('0011', '小区地面');
+INSERT INTO `parking_type` VALUES ('0020', '街坊路');
+INSERT INTO `parking_type` VALUES ('0030', '康师傅地下');
+COMMIT;
