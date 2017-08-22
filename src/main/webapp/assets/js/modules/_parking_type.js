@@ -4,7 +4,7 @@ $().ready(function () {
     $.ajax({
         type: "get",
         async: false,
-        url: contextPath + '/parking_type',
+        url: contextPath + '/parking_infos/parking_type',
         dataType: "json",
         contentType: "application/json",
         success: function (data) {

@@ -26,6 +26,7 @@ import java.util.List;
  */
 @Controller("pers.roamer.youyou.controller.UserController")
 @Log4j2
+@RequestMapping( value = "/parking_infos")
 public class UserController extends BaseController {
 
     @Autowired
@@ -48,9 +49,9 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @BusinessMethod(value = "查询车位信息")
+    @BusinessMethod(value = "查询车位列表")
     @SessionCheckKeyword(checkIt = false)
-    @GetMapping(value = "/parking_infos")
+    @GetMapping(value = "/")
     @ResponseBody
     public String showParkingInfo() throws ControllerException {
         List<ParkingInfoEntity> parkingInfoEntityList = new ArrayList<ParkingInfoEntity>();
@@ -174,7 +175,7 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @PostMapping(value = "/parking_info")
+    @PostMapping(value = "")
     @BusinessMethod(value = "增加一条车位登记信息")
     @ResponseBody
     public String add(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException {
@@ -203,7 +204,7 @@ public class UserController extends BaseController {
      */
 
     @BusinessMethod(value = "删除一个车位信息")
-    @DeleteMapping(value = "/parking_info/{id}")
+    @DeleteMapping(value = "/{id}")
     @ResponseBody
     public String delete(@PathVariable String id) throws ControllerException {
         try {
@@ -215,7 +216,7 @@ public class UserController extends BaseController {
     }
 
     @BusinessMethod(value = "获取一个车位详情")
-    @GetMapping(value = "/parking_info/{id}")
+    @GetMapping(value = "/{id}")
     @ResponseBody
     public String getParkingInfoWithID(@PathVariable String id) throws  ControllerException{
         try {
@@ -227,4 +228,18 @@ public class UserController extends BaseController {
         }
     }
 
+    @BusinessMethod(value = "更新一个车位信息")
+    @PutMapping("/{id}")
+    @ResponseBody
+    public String updateParkingInfo(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException{
+        try {
+            log.debug("更新一条记录:"+JsonUtilsHelper.objectToJsonString(parkingInfoEntity));
+            String userName = "!!!!";
+            parkingInfoEntity.setUpdatedBy(userName);
+            parkingInfoService.update(parkingInfoEntity);
+        } catch (JsonProcessingException | ServiceException e) {
+            log.error(e.getMessage());
+        }
+        return HttpResponseHelper.successInfoInbox("更新成功");
+    }
 }

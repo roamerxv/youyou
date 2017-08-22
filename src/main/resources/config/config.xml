@@ -21,7 +21,7 @@
         <!--设置是否要做session判断，以便确定用户是否登录-->
         <SessionCheck>false</SessionCheck>
         <!-- 设置是否要做业务活动日志记录 -->
-        <RecordBusinessLog>false</RecordBusinessLog>
+        <RecordBusinessLog>true</RecordBusinessLog>
         <!---->
         <!-- 设置判断 session 中被用于保存用户信息的关键词 -->
         <SessionUserKeyword>

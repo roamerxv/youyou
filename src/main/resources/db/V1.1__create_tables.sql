@@ -88,7 +88,7 @@ CREATE TABLE `parking_info` (
   `property_owner_cid` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '房屋所有人身份证号',
   `driving_license_no` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '行驶证号',
   `driving_license_register_at` date DEFAULT NULL COMMENT '行驶证登记日期',
-  `driving_license_ower` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '行驶证所有人',
+  `driving_license_owner` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '行驶证所有人',
   `car_no` varchar(16) COLLATE utf8_bin DEFAULT NULL COMMENT '车牌号',
   `parking_no` varchar(8) COLLATE utf8_bin DEFAULT NULL COMMENT '停车位号',
   `parking_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '停车位类型',

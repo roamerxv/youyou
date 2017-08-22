@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
 
-<script src="<%=request.getContextPath()%>/assets/js/parking_info/add.js"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/parking_info/add.css"/>
+<script src="<%=request.getContextPath()%>/assets/js/parking_info/edit.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/parking_info/edit.css"/>
 
 <script src="<%=request.getContextPath()%>/assets/js/lib/moment-2.18.1/moment.min.js"></script>
 
@@ -17,7 +17,7 @@
     <fieldset>
         <div class="panel panel-default">
             <div class="panel-heading">停车位信息登记
-                    <input class="btn btn-success btn-save" type="submit" value="保存"/>
+                    <input class="btn btn-success btn-save" type="submit" value="保存" disabled="disabled"/>
                     <a href="<%=request.getContextPath()%>/">返回列表</a>
             </div>
         </div>
@@ -208,7 +208,8 @@
             </div>
         </div>
     </fieldset>
-
+    <input type="hidden" id="created_by" value=""/>
+    <input type="hidden" id="created_at" value=""/>
 </form>
 
 <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>

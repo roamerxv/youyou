@@ -55,4 +55,10 @@ public class ParkingInfoService {
     public ParkingInfoEntity findByID(String id) throws ServiceException{
         return iParkingInfoRepository.findById(id) ;
     }
+
+    public void update(ParkingInfoEntity parkingInfoEntity) throws ServiceException {
+        Timestamp timestamp = new Timestamp(new Date().getTime());
+        parkingInfoEntity.setUpdatedAt(timestamp);
+        iParkingInfoRepository.save(parkingInfoEntity);
+    }
 }

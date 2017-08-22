@@ -20,7 +20,7 @@ public class ParkingInfoEntity {
     private String propertyOwnerCid;
     private String drivingLicenseNo;
     private Date drivingLicenseRegisterAt;
-    private String drivingLicenseOwer;
+    private String drivingLicenseOwner;
     private String carNo;
     private String parkingNo;
     private String comment;
@@ -124,13 +124,13 @@ public class ParkingInfoEntity {
     }
 
     @Basic
-    @Column(name = "driving_license_ower", nullable = true, length = 16)
-    public String getDrivingLicenseOwer() {
-        return drivingLicenseOwer;
+    @Column(name = "driving_license_owner", nullable = true, length = 16)
+    public String getDrivingLicenseOwner() {
+        return drivingLicenseOwner;
     }
 
-    public void setDrivingLicenseOwer(String drivingLicenseOwer) {
-        this.drivingLicenseOwer = drivingLicenseOwer;
+    public void setDrivingLicenseOwner(String drivingLicenseOwner) {
+        this.drivingLicenseOwner = drivingLicenseOwner;
     }
 
     @Basic
@@ -234,7 +234,7 @@ public class ParkingInfoEntity {
             return false;
         if (drivingLicenseRegisterAt != null ? !drivingLicenseRegisterAt.equals(that.drivingLicenseRegisterAt) : that.drivingLicenseRegisterAt != null)
             return false;
-        if (drivingLicenseOwer != null ? !drivingLicenseOwer.equals(that.drivingLicenseOwer) : that.drivingLicenseOwer != null)
+        if (drivingLicenseOwner != null ? !drivingLicenseOwner.equals(that.drivingLicenseOwner) : that.drivingLicenseOwner != null)
             return false;
         if (carNo != null ? !carNo.equals(that.carNo) : that.carNo != null) return false;
         if (parkingNo != null ? !parkingNo.equals(that.parkingNo) : that.parkingNo != null) return false;
@@ -259,7 +259,7 @@ public class ParkingInfoEntity {
         result = 31 * result + (propertyOwnerCid != null ? propertyOwnerCid.hashCode() : 0);
         result = 31 * result + (drivingLicenseNo != null ? drivingLicenseNo.hashCode() : 0);
         result = 31 * result + (drivingLicenseRegisterAt != null ? drivingLicenseRegisterAt.hashCode() : 0);
-        result = 31 * result + (drivingLicenseOwer != null ? drivingLicenseOwer.hashCode() : 0);
+        result = 31 * result + (drivingLicenseOwner != null ? drivingLicenseOwner.hashCode() : 0);
         result = 31 * result + (carNo != null ? carNo.hashCode() : 0);
         result = 31 * result + (parkingNo != null ? parkingNo.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);

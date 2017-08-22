@@ -64,7 +64,7 @@
             callback: function (result) {
                 if (result){
                     $.ajax({
-                        url: contextPath + "/parking_info/"+id,
+                        url: contextPath + "/parking_infos/"+id,
                         method: "delete"
                     }).done(function() {
                         parking_info_table.ajax.reload();
@@ -75,7 +75,7 @@
     };
 
     function fun_edit(id) {
-        window.location = "<%=request.getContextPath()%>/parking_info/"+id;
+        window.location = "<%=request.getContextPath()%>/views/parking_info/edit.jsp?"+id;
     }
 
     $().ready(function () {
@@ -83,7 +83,7 @@
             "processing": true,
             "serverSide": false,
             "ajax": {
-                url: contextPath + "/parking_infos.json",
+                url: contextPath + "/parking_infos/.json",
                 type: 'get',
                 dataType: "json",
                 processData: true,

@@ -1,5 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <script src="<%=request.getContextPath()%>/assets/js/lib/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+
+<%-- angular js --%>
+<%--<script src="<%=request.getContextPath()%>/assets/js/lib/angular-1.6.4/angular.min.js" ></script>--%>
+<%--<script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>--%>
+
+<%-- angular js --%>
+
+
 <script src="<%=request.getContextPath()%>/assets/js/lib/bootstrap-3.3.7/bootstrap.min.js"></script>
 <link href="<%=request.getContextPath()%>/assets/css/lib/bootstrap-3.3.7/bootstrap.css" rel="stylesheet">
 
@@ -31,6 +41,9 @@
 <script src="<%=request.getContextPath()%>/assets/js/lib/jonnyreeves-js-logger/logger.min.js"></script>
 <%----%>
 
+<%--jquery dateFormat--%>
+<script src="<%=request.getContextPath()%>/assets/js/lib/jquery.dataFormat/jquery-dateFormat.min.js"></script>
+<%----%>
 
 <%--使用Select2--%>
 <script src="<%=request.getContextPath()%>/assets/js/lib/Select2-4.0.3/select2.js"></script>
