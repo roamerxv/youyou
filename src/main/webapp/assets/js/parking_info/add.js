@@ -7,7 +7,7 @@ function fun_submit() {
     $.ajax({
         type: 'post',
         data: parkingInfo.toString(),
-        url: contextPath + '/parking_infos',
+        url: contextPath + '/parking_infos.json',
         async: false,//默认为true
         contentType: "application/json",
         dataType: 'json',//默认为预期服务器返回的数据类型
@@ -15,7 +15,12 @@ function fun_submit() {
             window.location = contextPath + "/";
         },
         error: function (data) {
-
+            Logger.debug("出现错误！");
+            if (JSON.parse(data.responseText).data[0].errorPath == "exception.system.need_login"){
+                Logger.debug("需要登录！");
+                showExceptionTip(data);
+                window.location = contextPath + "/views/login.jsp";
+            }
         }
     });
 }

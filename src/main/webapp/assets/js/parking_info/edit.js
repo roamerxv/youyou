@@ -3,7 +3,7 @@ $().ready(function () {
     id = location.search.substr(1);
     $.ajax({
         type: 'get',
-        url: contextPath + '/parking_infos/' + id,
+        url: contextPath + '/parking_infos/' + id + ".json",
         async: true,//是否异步，默认为true
         contentType: "application/json",
         dataType: 'json',//默认为预期服务器返回的数据类型
@@ -13,7 +13,8 @@ $().ready(function () {
             $(":disabled").removeAttr("disabled")
         },
         error: function (data) {
-
+            Logger.debug("出现错误！");
+            showExceptionTip(data);
         }
     });
 })
@@ -21,12 +22,12 @@ $().ready(function () {
 function fun_submit() {
     Logger.debug("提交更新!" + id);
     var parkingInfo = getUIValue2Json();
-    parkingInfo.id = id ;
+    parkingInfo.id = id;
     Logger.debug(parkingInfo.toString());
     $.ajax({
         type: 'put',
         data: parkingInfo.toString(),
-        url: contextPath + '/parking_infos/'+id,
+        url: contextPath + '/parking_infos/' + id,
         async: false,//默认为true
         contentType: "application/json",
         dataType: 'json',//默认为预期服务器返回的数据类型

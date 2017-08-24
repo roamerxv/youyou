@@ -6,17 +6,17 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pers.roamer.boracay.aspect.businesslogger.BusinessMethod;
 import pers.roamer.boracay.aspect.httprequest.SessionCheckKeyword;
+import pers.roamer.boracay.configer.ConfigHelper;
 import pers.roamer.boracay.helper.HttpResponseHelper;
 import pers.roamer.boracay.helper.JsonUtilsHelper;
-import pers.roamer.youyou.entity.ApproveTypeEntity;
-import pers.roamer.youyou.entity.LivingTypeEntity;
-import pers.roamer.youyou.entity.ParkingInfoEntity;
-import pers.roamer.youyou.entity.ParkingTypeEntity;
+import pers.roamer.youyou.entity.*;
 import pers.roamer.youyou.service.*;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,7 +26,6 @@ import java.util.List;
  */
 @Controller("pers.roamer.youyou.controller.UserController")
 @Log4j2
-@RequestMapping( value = "/parking_infos")
 public class UserController extends BaseController {
 
     @Autowired
@@ -41,6 +40,9 @@ public class UserController extends BaseController {
     @Autowired
     ApproveTypeService approveTypeService;
 
+    @Autowired
+    UserService userService;
+
 
     /**
      * 显示所有的车位登记信息
@@ -51,7 +53,7 @@ public class UserController extends BaseController {
      */
     @BusinessMethod(value = "查询车位列表")
     @SessionCheckKeyword(checkIt = false)
-    @GetMapping(value = "/")
+    @GetMapping(value = "/parking_infos")
     @ResponseBody
     public String showParkingInfo() throws ControllerException {
         List<ParkingInfoEntity> parkingInfoEntityList = new ArrayList<ParkingInfoEntity>();
@@ -78,7 +80,7 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @GetMapping(value = "/living_type")
+    @GetMapping(value = "/parking_infos/living_type")
     @ResponseBody
     public String livingType4Select2() throws ControllerException {
         log.debug("获取所有居住类型的 json 对象");
@@ -108,7 +110,7 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @GetMapping(value = "/approve_type")
+    @GetMapping(value = "/parking_infos/approve_type")
     @ResponseBody
     public String approveType4Select2() throws ControllerException {
         log.debug("获取所有审核状态的 json 对象");
@@ -137,7 +139,7 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @GetMapping(value = "/parking_type")
+    @GetMapping(value = "/parking_infos/parking_type")
     @ResponseBody
     public String parkingType4Select2() throws ControllerException {
         log.debug("获取所有停车场类型的 json 对象");
@@ -175,8 +177,9 @@ public class UserController extends BaseController {
      *
      * @throws ControllerException
      */
-    @PostMapping(value = "")
+    @PostMapping(value = "/parking_infos")
     @BusinessMethod(value = "增加一条车位登记信息")
+    @SessionCheckKeyword(checkIt = true)
     @ResponseBody
     public String add(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException {
 
@@ -204,7 +207,8 @@ public class UserController extends BaseController {
      */
 
     @BusinessMethod(value = "删除一个车位信息")
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/parking_infos/{id}")
+    @SessionCheckKeyword(checkIt = true)
     @ResponseBody
     public String delete(@PathVariable String id) throws ControllerException {
         try {
@@ -216,7 +220,8 @@ public class UserController extends BaseController {
     }
 
     @BusinessMethod(value = "获取一个车位详情")
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/parking_infos/{id}")
+    @SessionCheckKeyword(checkIt = true)
     @ResponseBody
     public String getParkingInfoWithID(@PathVariable String id) throws  ControllerException{
         try {
@@ -229,7 +234,8 @@ public class UserController extends BaseController {
     }
 
     @BusinessMethod(value = "更新一个车位信息")
-    @PutMapping("/{id}")
+    @PutMapping("/parking_infos/{id}")
+    @SessionCheckKeyword(checkIt = true)
     @ResponseBody
     public String updateParkingInfo(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException{
         try {
@@ -241,5 +247,61 @@ public class UserController extends BaseController {
             log.error(e.getMessage());
         }
         return HttpResponseHelper.successInfoInbox("更新成功");
+    }
+
+
+    @BusinessMethod(value = "登录")
+    @RequestMapping( value = "/login")
+    @PostMapping("/login")
+    @ResponseBody
+    public String login (@RequestBody UserEntity userEntity)throws ControllerException{
+        log.debug("用户登录!");
+        try {
+            if (userService.login(userEntity)){
+                httpSession.setAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"),userEntity.getName());
+            }
+        } catch (ServiceException e) {
+            log.error(e.getMessage());
+            throw new ControllerException(e.getMessage());
+        }
+        return HttpResponseHelper.successInfoInbox("成功登录");
+    }
+
+    /**
+     * 登出功能
+     *
+     * @return
+     *
+     * @throws ServiceException
+     */
+    @BusinessMethod(value = "登出", isLogged = true)
+    @SessionCheckKeyword(checkIt = false)
+    @RequestMapping(value = "/logout")
+    public ModelAndView logout() throws ControllerException {
+        log.debug("开始登出");
+        Enumeration<String> eume = httpSession.getAttributeNames();
+        while (eume.hasMoreElements()) {
+            String name = eume.nextElement();
+            httpSession.removeAttribute(name);
+        }
+        log.debug("登出完成");
+        return new ModelAndView("/");
+    }
+
+
+    @BusinessMethod(value = "更新密码")
+    @SessionCheckKeyword(checkIt = true)
+    @PostMapping(value = "/modifyPassword")
+    @ResponseBody
+    public String modifyPassword(@RequestParam String newpassword) throws ControllerException{
+        log.debug("需要修改成的密码是:{}",newpassword);
+        String userName = (String) httpSession.getAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"));
+        try {
+            userService.modifyPassword(userName,newpassword);
+        } catch (ServiceException e) {
+            log.error(e.getMessage());
+            throw new ControllerException(e.getMessage());
+        }
+        return HttpResponseHelper.successInfoInbox("密码修改成功！");
     }
 }

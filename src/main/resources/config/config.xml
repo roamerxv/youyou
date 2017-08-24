@@ -19,13 +19,13 @@
         </Whitelist>
         <!---->
         <!--设置是否要做session判断，以便确定用户是否登录-->
-        <SessionCheck>false</SessionCheck>
+        <SessionCheck>true</SessionCheck>
         <!-- 设置是否要做业务活动日志记录 -->
         <RecordBusinessLog>true</RecordBusinessLog>
         <!---->
         <!-- 设置判断 session 中被用于保存用户信息的关键词 -->
         <SessionUserKeyword>
-            user_mobile
+            user_name
         </SessionUserKeyword>
 
         <!-- 用于 boracay 组件必须使用到的配置 end -->
@@ -147,7 +147,7 @@
         </sms>
         <!---->
 
-        <creator>
+        <user>
             <register>
                 <mobile_used>
                     手机已经被注册过了！| mobile
@@ -159,10 +159,10 @@
             </register>
             <login>
                 <password_not_match>
-                    密码不匹配|password
+                    密码不匹配|Password
                 </password_not_match>
                 <user_not_exit>
-                    无此用户|mobile
+                    无此用户|Username
                 </user_not_exit>
                 <unHandle>
                     未捕获错误的登录失败
@@ -208,7 +208,7 @@
                     个人账户信息为空
                 </personal_info_null>
             </account_info>
-        </creator>
+        </user>
 
         <record_company>
             <create>

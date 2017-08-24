@@ -1,0 +1,12 @@
+version: "2"
+services:
+    youyou-tomcat:
+        build: ./tomcat
+        container_name: "youyou-tomcat"
+        ports:
+            - "1088:8080"
+        volumes:
+            - "./tomcat/webapps:/usr/local/tomcat/webapps"
+            - "./tomcat/logs:/usr/local/tomcat/logs"
+            - "./tomcat/logs/youyoy:/logs/youyou"
+

@@ -127,3 +127,12 @@ INSERT INTO `parking_type` VALUES ('0011', '小区地面');
 INSERT INTO `parking_type` VALUES ('0020', '街坊路');
 INSERT INTO `parking_type` VALUES ('0030', '康师傅地下');
 COMMIT;
+
+
+CREATE TABLE `user` (
+  `name` varchar(36) COLLATE utf8_bin NOT NULL COMMENT '用户名',
+  `passwd` varchar(36) COLLATE utf8_bin NOT NULL COMMENT '密码',
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+SET FOREIGN_KEY_CHECKS = 1;

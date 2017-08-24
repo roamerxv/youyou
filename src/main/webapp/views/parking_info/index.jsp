@@ -1,4 +1,4 @@
-<%--
+<%@ page import="pers.roamer.boracay.configer.ConfigHelper" %><%--
   Created by IntelliJ IDEA.
   User: roamer
   Date: 2017/8/3
@@ -64,11 +64,19 @@
             callback: function (result) {
                 if (result){
                     $.ajax({
-                        url: contextPath + "/parking_infos/"+id,
-                        method: "delete"
-                    }).done(function() {
-                        parking_info_table.ajax.reload();
-                    });
+                        url: contextPath + "/parking_infos/"+id+".json",
+                        method: "delete",
+                        beforeSend: function (data) {
+                            cleanAllExceptionTip();
+                        },
+                        success: function (data) {
+                            parking_info_table.ajax.reload();
+                        },
+                        error: function (data) {
+                            Logger.debug("出现错误！");
+                            showExceptionTip(data);
+                        }
+                    })
                 }
             }
         });
@@ -83,7 +91,7 @@
             "processing": true,
             "serverSide": false,
             "ajax": {
-                url: contextPath + "/parking_infos/.json",
+                url: contextPath + "/parking_infos.json",
                 type: 'get',
                 dataType: "json",
                 processData: true,
@@ -114,7 +122,13 @@
             }, {
                 "render": function (data, type, row) {
                     console.debug(row);
-                    return '<input class="btn  btn-xs btn-primary btn-edit" type="button" value="编辑" onclick="fun_edit(\'' + row.id + '\')"><input class="btn btn-xs btn-danger" type="button" value="删除" onclick="fun_delete(\'' + row.id + '\')">'
+                    <% String name=(String)session.getAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"));
+                        if(name!=null){%>
+                            return '<input class="btn  btn-xs btn-primary btn-edit" type="button" value="编辑" onclick="fun_edit(\'' + row.id + '\')"><input class="btn btn-xs btn-danger" type="button" value="删除" onclick="fun_delete(\'' + row.id + '\')">'
+                    <%}else{ %>
+                            return '<a href = '+ contextPath+'\"/views/login.jsp\">需要登录</a>'
+                    <%} %>
+
                 },
                 "targets": 7
             }]
