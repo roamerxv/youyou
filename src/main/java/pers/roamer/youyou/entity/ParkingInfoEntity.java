@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * @author roamer - 徐泽宇
- * @create 2017-08-2017/8/18  下午1:11
+ * @create 2017-08-2017/8/24  下午3:06
  */
 @Entity
 @Table(name = "parking_info", schema = "youyou", catalog = "")
@@ -23,7 +23,9 @@ public class ParkingInfoEntity {
     private String drivingLicenseOwner;
     private String carNo;
     private String parkingNo;
+    private String contactMobile;
     private String comment;
+    private Integer lineOrder;
     private Date registerDate;
     private String createdBy;
     private Timestamp createdAt;
@@ -154,6 +156,16 @@ public class ParkingInfoEntity {
     }
 
     @Basic
+    @Column(name = "contact_mobile", nullable = true, length = 36)
+    public String getContactMobile() {
+        return contactMobile;
+    }
+
+    public void setContactMobile(String contactMobile) {
+        this.contactMobile = contactMobile;
+    }
+
+    @Basic
     @Column(name = "comment", nullable = true, length = -1)
     public String getComment() {
         return comment;
@@ -161,6 +173,16 @@ public class ParkingInfoEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Basic
+    @Column(name = "line_order", nullable = true)
+    public Integer getLineOrder() {
+        return lineOrder;
+    }
+
+    public void setLineOrder(Integer lineOrder) {
+        this.lineOrder = lineOrder;
     }
 
     @Basic
@@ -238,7 +260,10 @@ public class ParkingInfoEntity {
             return false;
         if (carNo != null ? !carNo.equals(that.carNo) : that.carNo != null) return false;
         if (parkingNo != null ? !parkingNo.equals(that.parkingNo) : that.parkingNo != null) return false;
+        if (contactMobile != null ? !contactMobile.equals(that.contactMobile) : that.contactMobile != null)
+            return false;
         if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
+        if (lineOrder != null ? !lineOrder.equals(that.lineOrder) : that.lineOrder != null) return false;
         if (registerDate != null ? !registerDate.equals(that.registerDate) : that.registerDate != null) return false;
         if (createdBy != null ? !createdBy.equals(that.createdBy) : that.createdBy != null) return false;
         if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
@@ -262,7 +287,9 @@ public class ParkingInfoEntity {
         result = 31 * result + (drivingLicenseOwner != null ? drivingLicenseOwner.hashCode() : 0);
         result = 31 * result + (carNo != null ? carNo.hashCode() : 0);
         result = 31 * result + (parkingNo != null ? parkingNo.hashCode() : 0);
+        result = 31 * result + (contactMobile != null ? contactMobile.hashCode() : 0);
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
+        result = 31 * result + (lineOrder != null ? lineOrder.hashCode() : 0);
         result = 31 * result + (registerDate != null ? registerDate.hashCode() : 0);
         result = 31 * result + (createdBy != null ? createdBy.hashCode() : 0);
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);

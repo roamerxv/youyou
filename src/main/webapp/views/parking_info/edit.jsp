@@ -101,6 +101,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm ">
+                                <span class="input-group-addon input-span">联系电话</span>
+                                <input type="text" class="form-control" placeholder="联系电话" id="contact_mobile" ng-model="contact_mobile"
+                                       name="contact_mobile" aria-describedby="contact_mobile"
+                                       maxlength="18">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon input-span" id="sizing-addon3">排队位置:第</span>
+                                <input type="number" min="0" step="1" class="form-control" placeholder="" id="line_order" ng-model="line_order"
+                                       name="line_order" aria-describedby="line_order"
+                                       maxlength="4">
+                                <span class="input-group-addon input-span" id="sizing-addon3">号</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

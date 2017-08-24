@@ -37,58 +37,7 @@
 <p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
     以获得更好的体验！</p>
 <![endif]-->
-
-<header class="am-topbar am-topbar-inverse admin-header">
-    <div class="am-topbar-brand">
-        <a href="<%=request.getContextPath()%>/">
-            <strong>中祥龙柏苑</strong>
-            <small>车位信息公示</small>
-        </a>
-    </div>
-
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-            data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
-            class="am-icon-bars"></span></button>
-
-    <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-        <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-            <li class="am-hide-sm-only">
-                <a href="<%=request.getContextPath()%>/views/system/systemLoggerIndex.jsp" id="show_log">
-                    <span class="am-icon-table"></span> <span class="admin-fullText">显示日志</span>
-                </a>
-            </li>
-            <% String name = (String) session.getAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"));
-                if (name != null) {%>
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content">
-                    <li><a href="#"><span class="am-icon-user"></span>资料</a></li>
-                    <li><a href="<%=request.getContextPath()%>/views/modifyPassword.jsp"><span class="am-icon-cog"></span>修改密码</a></li>
-                    <li><a href="<%=request.getContextPath()%>/views/parking_info/add.jsp"><span
-                            class="am-icon-car"></span>增加</a></li>
-                    <li><a href="<%=request.getContextPath()%>/logout"><span class="am-icon-power-off"></span>退出</a>
-                    </li>
-                </ul>
-            </li>
-            <%} else { %>
-            <li class="am-dropdown" data-am-dropdown>
-                <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                    <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
-                </a>
-                <ul class="am-dropdown-content">
-                    <li><a href="<%=request.getContextPath()%>/views/login.jsp"><span class="am-icon-user"></span>登录</a></li>
-                    </li>
-                </ul>
-            </li>
-            <%} %>
-
-            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span
-                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
-        </ul>
-    </div>
-</header>
+<%@include file="../modules/_top_menu.jsp"%>
 
 <div class="am-cf admin-main">
     <!-- sidebar start -->

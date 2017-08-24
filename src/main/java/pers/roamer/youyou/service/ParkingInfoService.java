@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pers.roamer.youyou.entity.ParkingInfoEntity;
+import pers.roamer.youyou.entity.ParkingTypeEntity;
 import pers.roamer.youyou.repository.IParkingInfoRepository;
 
 import java.sql.Timestamp;
@@ -29,8 +30,22 @@ public class ParkingInfoService {
     @Autowired
     IParkingInfoRepository iParkingInfoRepository;
 
-    public List<ParkingInfoEntity> findAll() throws ServiceException {
-        return iParkingInfoRepository.findAll();
+    /**
+     * 列出所有已经在停车位上的车辆信息
+     */
+    public List<ParkingInfoEntity> findAllParked() throws ServiceException {
+        ParkingTypeEntity parkingTypeEntity = new ParkingTypeEntity();
+        parkingTypeEntity.setId("0000");
+        return iParkingInfoRepository.findByParkingTypeByParkingTypeNot(parkingTypeEntity);
+    }
+
+    /**
+     * 列出所有在排队的车辆信息
+     */
+    public List<ParkingInfoEntity> findAllLining() throws ServiceException {
+        ParkingTypeEntity parkingTypeEntity = new ParkingTypeEntity();
+        parkingTypeEntity.setId("0000");
+        return iParkingInfoRepository.findByParkingTypeByParkingType(parkingTypeEntity);
     }
 
     public ParkingInfoEntity add(ParkingInfoEntity parkingInfoEntity) throws ServiceException {

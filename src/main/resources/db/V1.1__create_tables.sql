@@ -93,7 +93,9 @@ CREATE TABLE `parking_info` (
   `parking_no` varchar(8) COLLATE utf8_bin DEFAULT NULL COMMENT '停车位号',
   `parking_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '停车位类型',
   `living_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '居住类型',
+  `contact_mobile` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '联系电话',
   `comment` text COLLATE utf8_bin COMMENT '备注',
+  `line_order` INT COLLATE utf8_bin COMMENT '排队序号',
   `approve_type` varchar(36) COLLATE utf8_bin DEFAULT NULL COMMENT '审批结果',
   `register_date` date NOT NULL COMMENT '车位资料登记时间',
   `created_by` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '录入人员',
@@ -122,6 +124,7 @@ CREATE TABLE `parking_type` (
 -- Records of parking_type
 -- ----------------------------
 BEGIN;
+INSERT INTO `parking_type` VALUES ('0000', '未安排');
 INSERT INTO `parking_type` VALUES ('0010', '小区地下');
 INSERT INTO `parking_type` VALUES ('0011', '小区地面');
 INSERT INTO `parking_type` VALUES ('0020', '街坊路');

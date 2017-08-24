@@ -18,7 +18,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">停车位信息登记
                     <input class="btn btn-success btn-save" type="submit" value="保存"/>
-                    <a href="<%=request.getContextPath()%>/">返回列表</a>
             </div>
         </div>
 
@@ -97,6 +96,29 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">审核状态</span>
                                 <%@ include file="../modules/_approve_type.jsp" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm ">
+                                <span class="input-group-addon input-span">联系电话</span>
+                                <input type="text" class="form-control" placeholder="联系电话" id="contact_mobile" ng-model="contact_mobile"
+                                       name="contact_mobile" aria-describedby="contact_mobile"
+                                       maxlength="18">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="input-group">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon input-span" id="sizing-addon3">排队位置:第</span>
+                                <input type="number" min="0" step="1" class="form-control" placeholder="" id="line_order" ng-model="line_order"
+                                       name="line_order" aria-describedby="line_order"
+                                       maxlength="4">
+                                <span class="input-group-addon input-span" id="sizing-addon3">号</span>
                             </div>
                         </div>
                     </div>

@@ -83,6 +83,9 @@ function fun_parseJsonToUI(data) {
     $("#driving_license_owner").val(data.drivingLicenseOwner);
     $("#comment").val(data.comment);
 
+    $("#line_order").val(data.lineOrder);
+    $("#contact_mobile").val(data.contactMobile);
+
     $("#created_by").val(data.createdBy);
     $("#created_at").val(data.createdAt);
 
@@ -119,6 +122,9 @@ function getUIValue2Json() {
     parkingInfo.drivingLicenseRegisterAt = $("#driving_license_register_at").val();
     parkingInfo.drivingLicenseOwner = $("#driving_license_owner").val();
     parkingInfo.comment = $("#comment").val();
+
+    parkingInfo.lineOrder = $("#line_order").val();
+    parkingInfo.contactMobile = $("#contact_mobile").val();
 
     parkingInfo.createdAt = $("#created_at").val();
     parkingInfo.createdBy = $("#created_by").val();

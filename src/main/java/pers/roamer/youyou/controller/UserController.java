@@ -45,27 +45,58 @@ public class UserController extends BaseController {
 
 
     /**
-     * 显示所有的车位登记信息
+     * 显示所有的已经停在车位上的车辆登记信息
      *
      * @return
      *
      * @throws ControllerException
      */
-    @BusinessMethod(value = "查询车位列表")
+    @BusinessMethod(value = "列出已停车辆")
     @SessionCheckKeyword(checkIt = false)
-    @GetMapping(value = "/parking_infos")
+    @GetMapping(value = "/parking_infos/parked")
     @ResponseBody
     public String showParkingInfo() throws ControllerException {
-        List<ParkingInfoEntity> parkingInfoEntityList = new ArrayList<ParkingInfoEntity>();
+        log.debug("开始列出所有已经有停车位的车辆信息");
         try {
             HashMap hashMap = new HashMap();
             String m_rtn = "";
             try {
-                hashMap.put("data", parkingInfoEntityList = parkingInfoService.findAll());
+                hashMap.put("data", parkingInfoService.findAllParked());
                 m_rtn = JsonUtilsHelper.objectToJsonString(hashMap);
             } catch (JsonProcessingException e) {
                 log.error(e.getStackTrace());
             }
+            log.debug("开始列出所有已经有停车位的车辆信息----完成");
+            return m_rtn;
+        } catch (ServiceException e) {
+            log.error(e.getMessage());
+            throw new ControllerException(e.getMessage());
+        }
+    }
+
+    /**
+     * 显示所有的未停的正在排队的车辆登记信息
+     *
+     * @return
+     *
+     * @throws ControllerException
+     */
+    @BusinessMethod(value = "列出排队车辆")
+    @SessionCheckKeyword(checkIt = false)
+    @GetMapping(value = "/parking_infos/lining")
+    @ResponseBody
+    public String showLiningParkingInfo() throws ControllerException {
+        log.debug("开始列出正在排队的车辆信息");
+        try {
+            HashMap hashMap = new HashMap();
+            String m_rtn = "";
+            try {
+                hashMap.put("data", parkingInfoService.findAllLining());
+                m_rtn = JsonUtilsHelper.objectToJsonString(hashMap);
+            } catch (JsonProcessingException e) {
+                log.error(e.getStackTrace());
+            }
+            log.debug("开始列出正在排队的车辆信息----完成");
             return m_rtn;
         } catch (ServiceException e) {
             log.error(e.getMessage());

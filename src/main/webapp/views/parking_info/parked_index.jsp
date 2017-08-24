@@ -91,7 +91,7 @@
             "processing": true,
             "serverSide": false,
             "ajax": {
-                url: contextPath + "/parking_infos.json",
+                url: contextPath + "/parking_infos/parked.json",
                 type: 'get',
                 dataType: "json",
                 processData: true,

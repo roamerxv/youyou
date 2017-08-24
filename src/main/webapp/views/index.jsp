@@ -8,25 +8,31 @@
   --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
+<style>
+    .content {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 240px;
+        width: 70%;
+    }
+</style>
 <div class="admin-content">
     <div class="admin-content-body">
-        <div class="am-cf am-padding">
-            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> /
-                <small>车位信息列表</small>
-            </div>
-        </div>
 
+        <ul class="content" style="text-align:center;">
 
-        <div class="am-g">
+            <img src="<%=request.getContextPath()%>/assets/imgs/gongping.jpg"/>
 
-            <%@ include file="./parking_info/index.jsp" %>
-
-        </div>
+        </ul>
     </div>
 
     <footer class="admin-content-footer">
         <hr>
-        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+        <p class="am-padding-left">© 2017 Roamer GPL.</p>
     </footer>
 </div>
 </body>
