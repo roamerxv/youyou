@@ -9,4 +9,5 @@
 
     <!-- 指明满足path的页面，将被排除，不被装饰 -->
     <mapping path="/assets/*" exclue="true" />
+    <mapping path="/index.jsp" exclue="true" />
 </sitemesh>

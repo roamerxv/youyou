@@ -15,4 +15,8 @@ public interface IParkingInfoRepository extends JpaRepository<ParkingInfoEntity,
     List<ParkingInfoEntity> findByParkingTypeByParkingType(ParkingTypeEntity parkingTypeEntity);
 
     List<ParkingInfoEntity> findByParkingTypeByParkingTypeNot(ParkingTypeEntity parkingTypeEntity);
+
+    List<ParkingInfoEntity> findByParkingTypeByParkingTypeIn(List<ParkingTypeEntity> parkingTypeEntity);
+
+    List<ParkingInfoEntity> findByParkingTypeByParkingType(List<ParkingTypeEntity> parkingTypeEntity);
 }

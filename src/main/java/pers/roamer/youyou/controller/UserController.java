@@ -215,7 +215,7 @@ public class UserController extends BaseController {
     public String add(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException {
 
         try {
-            String userName = "!!!!";
+            String userName = (String) httpSession.getAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"));
             parkingInfoEntity.setCreatedBy(userName);
             parkingInfoEntity.setUpdatedBy(userName);
             try {
@@ -271,7 +271,7 @@ public class UserController extends BaseController {
     public String updateParkingInfo(@RequestBody ParkingInfoEntity parkingInfoEntity) throws ControllerException{
         try {
             log.debug("更新一条记录:"+JsonUtilsHelper.objectToJsonString(parkingInfoEntity));
-            String userName = "!!!!";
+            String userName = (String) httpSession.getAttribute(ConfigHelper.getConfig().getString("System.SessionUserKeyword"));
             parkingInfoEntity.setUpdatedBy(userName);
             parkingInfoService.update(parkingInfoEntity);
         } catch (JsonProcessingException | ServiceException e) {

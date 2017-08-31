@@ -8,6 +8,7 @@
   --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
+
 <style>
     .content {
         position: absolute;
@@ -24,7 +25,6 @@
     <div class="admin-content-body">
 
         <ul class="content" style="text-align:center;">
-
             <img src="<%=request.getContextPath()%>/assets/imgs/gongping.jpg"/>
 
         </ul>

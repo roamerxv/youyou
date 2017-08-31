@@ -6,6 +6,7 @@
 <%-- angular js --%>
 <%--<script src="<%=request.getContextPath()%>/assets/js/lib/angular-1.6.4/angular.min.js" ></script>--%>
 <%--<script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>--%>
+<%--<script src="<%=request.getContextPath()%>/assets/js/lib/angular-1.6.4/angular.min.js"></script>--%>
 
 <%-- angular js --%>
 

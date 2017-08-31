@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pers.roamer.youyou.entity.ParkingInfoEntity;
-import pers.roamer.youyou.entity.ParkingTypeEntity;
 import pers.roamer.youyou.repository.IParkingInfoRepository;
+import pers.roamer.youyou.repository.IParkingTypeRepository;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -30,22 +30,22 @@ public class ParkingInfoService {
     @Autowired
     IParkingInfoRepository iParkingInfoRepository;
 
+    @Qualifier("pers.roamer.youyou.repository.IParkingTypeRepository")
+    @Autowired
+    IParkingTypeRepository iParkingTypeRepository;
+
     /**
      * 列出所有已经在停车位上的车辆信息
      */
     public List<ParkingInfoEntity> findAllParked() throws ServiceException {
-        ParkingTypeEntity parkingTypeEntity = new ParkingTypeEntity();
-        parkingTypeEntity.setId("0000");
-        return iParkingInfoRepository.findByParkingTypeByParkingTypeNot(parkingTypeEntity);
+        return iParkingInfoRepository.findByParkingTypeByParkingTypeIn(iParkingTypeRepository.findAllByLining(false));
     }
 
     /**
      * 列出所有在排队的车辆信息
      */
     public List<ParkingInfoEntity> findAllLining() throws ServiceException {
-        ParkingTypeEntity parkingTypeEntity = new ParkingTypeEntity();
-        parkingTypeEntity.setId("0000");
-        return iParkingInfoRepository.findByParkingTypeByParkingType(parkingTypeEntity);
+        return iParkingInfoRepository.findByParkingTypeByParkingTypeIn(iParkingTypeRepository.findAllByLining(true));
     }
 
     public ParkingInfoEntity add(ParkingInfoEntity parkingInfoEntity) throws ServiceException {

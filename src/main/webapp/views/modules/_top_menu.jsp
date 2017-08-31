@@ -15,7 +15,6 @@
     <div class="am-topbar-brand">
         <a href="<%=request.getContextPath()%>/">
             <strong>中祥龙柏苑</strong>
-            <small>车位信息公示</small>
         </a>
     </div>
 
@@ -64,8 +63,8 @@
                     <span class="am-icon-table"></span> <span class="admin-fullText">显示日志</span>
                 </a>
             </li>
-            <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span
-                    class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+            <%--<li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span--%>
+                    <%--class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>--%>
         </ul>
     </div>
 </header>

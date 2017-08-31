@@ -1,6 +1,8 @@
 function fun_submit() {
     Logger.debug("保存记录！");
 
+
+
     var parkingInfo = getUIValue2Json();
     Logger.debug(parkingInfo.toString());
 

@@ -117,6 +117,7 @@ CREATE TABLE `parking_info` (
 CREATE TABLE `parking_type` (
   `id` varchar(36) COLLATE utf8_bin NOT NULL COMMENT '主键 id',
   `name` varchar(32) COLLATE utf8_bin NOT NULL COMMENT '停车位类型',
+  `isLining` BOOLEAN COLLATE utf8_bin NOT NULL COMMENT '是否算排位',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -124,11 +125,11 @@ CREATE TABLE `parking_type` (
 -- Records of parking_type
 -- ----------------------------
 BEGIN;
-INSERT INTO `parking_type` VALUES ('0000', '未安排');
-INSERT INTO `parking_type` VALUES ('0010', '小区地下');
-INSERT INTO `parking_type` VALUES ('0011', '小区地面');
-INSERT INTO `parking_type` VALUES ('0020', '街坊路');
-INSERT INTO `parking_type` VALUES ('0030', '康师傅地下');
+INSERT INTO `parking_type` VALUES ('0000', '未安排',TRUE );
+INSERT INTO `parking_type` VALUES ('0010', '小区地下',FALSE );
+INSERT INTO `parking_type` VALUES ('0011', '小区地面',FALSE );
+INSERT INTO `parking_type` VALUES ('0020', '街坊路',TRUE );
+INSERT INTO `parking_type` VALUES ('0030', '康师傅地下',TRUE );
 COMMIT;
 
 

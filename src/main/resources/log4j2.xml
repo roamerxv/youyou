@@ -56,9 +56,9 @@
 
         <!-- 设置 显示 hibernate 生成的 hql 语句(org.hibernate.hql 设置成 debug 就显示，info 就不显示)-->
         <logger name="org.hibernate.hql" level="info" additivity="false"></logger>
-        <logger name="org.hibernate" level="info" additivity="false"></logger>
+        <!--<logger name="org.hibernate" level="info" additivity="false"></logger>-->
         <!-- 要显示 hibernate 的 sql 语句的参数， 必须 trace -->
-        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="info"></logger>
+        <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace"></logger>
 
         <!--关闭个人组件的 log-->
         <logger name="pers.roamer.boracay" level="info"></logger>

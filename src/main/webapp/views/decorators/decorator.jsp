@@ -8,7 +8,7 @@
   --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html class="no-js fixed-layout">
+<html class="no-js fixed-layout" ng-app="youyou">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

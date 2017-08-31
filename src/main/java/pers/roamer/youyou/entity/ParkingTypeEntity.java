@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class ParkingTypeEntity {
     private String id;
     private String name;
+    private boolean isLining;
 
     @Id
     @Column(name = "id", nullable = false, length = 36)
@@ -50,5 +51,15 @@ public class ParkingTypeEntity {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "isLining", nullable = false)
+    public boolean isLining() {
+        return isLining;
+    }
+
+    public void setLining(boolean lining) {
+        isLining = lining;
     }
 }

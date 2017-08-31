@@ -13,11 +13,11 @@
 
 <script src="<%=request.getContextPath()%>/assets/js/lib/moment-2.18.1/moment.min.js"></script>
 
-<form class="am-form" id="frm"  target="nm_iframe" onsubmit="fun_submit()"  ng-app="youyou">
+<form class="am-form" id="frm" target="nm_iframe" onsubmit="fun_submit()" ng-controller="myCtrl">
     <fieldset>
         <div class="panel panel-default">
             <div class="panel-heading">停车位信息登记
-                    <input class="btn btn-success btn-save" type="submit" value="保存"/>
+                <input class="btn btn-success btn-save" type="submit" value="保存"/>
             </div>
         </div>
 
@@ -37,7 +37,7 @@
                         <div class="input-group">
                             <div class="input-group input-group-sm ">
                                 <span class="input-group-addon input-span">门牌号(格式:0101)</span>
-                                <input type="text" class="form-control" placeholder="门牌号" id="room_no" ng-model="room_no"
+                                <input type="text" class="form-control" placeholder="门牌号" id="room_no" ng-model="roomNo"
                                        name="room_no" aria-describedby="room_no" required="required"
                                        maxlength="4">
                             </div>
@@ -66,7 +66,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">停车位号</span>
                                 <input type="text" class="form-control" placeholder=""
-                                       aria-describedby="sizing-addon3"  id="parking_no" style="width: 40px"
+                                       aria-describedby="sizing-addon3" id="parking_no" style="width: 40px"
                                        maxlength="2">
                             </div>
                         </div>
@@ -75,8 +75,8 @@
                         <div class="input-group">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon6">车牌号</span>
-                                <input type="text" class="form-control" id="car_no"  placeholder="输入车牌号"
-                                       aria-describedby="sizing-addon6"  required="required" style="width: 150px"
+                                <input type="text" class="form-control" id="car_no" placeholder="输入车牌号"
+                                       aria-describedby="sizing-addon6" required="required" style="width: 150px"
                                        maxlength="8">
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon6">车位登记时间</span>
                                 <input type="date" class="form-control edit-input" id="register_date" placeholder=""
-                                       aria-describedby="sizing-addon6" 
+                                       aria-describedby="sizing-addon6"
                                        maxlength="18">
                             </div>
                         </div>
@@ -105,7 +105,8 @@
                         <div class="input-group">
                             <div class="input-group input-group-sm ">
                                 <span class="input-group-addon input-span">联系电话</span>
-                                <input type="text" class="form-control" placeholder="联系电话" id="contact_mobile" ng-model="contact_mobile"
+                                <input type="text" class="form-control" placeholder="联系电话" id="contact_mobile"
+                                       ng-model="contact_mobile"
                                        name="contact_mobile" aria-describedby="contact_mobile"
                                        maxlength="18">
                             </div>
@@ -115,7 +116,8 @@
                         <div class="input-group">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">排队位置:第</span>
-                                <input type="number" min="0" step="1" class="form-control" placeholder="" id="line_order" ng-model="line_order"
+                                <input type="number" min="0" step="1" class="form-control" placeholder=""
+                                       id="line_order" ng-model="line_order"
                                        name="line_order" aria-describedby="line_order"
                                        maxlength="4">
                                 <span class="input-group-addon input-span" id="sizing-addon3">号</span>
@@ -135,11 +137,11 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">产证号:沪房地（闵）字（</span>
                                 <input type="text" class="form-control edit-input" placeholder=""
-                                       aria-describedby="sizing-addon3"  style="width:60px" id="property_cert_1"
+                                       aria-describedby="sizing-addon3" style="width:60px" id="property_cert_1"
                                        maxlength="4">
                                 <span class="input-group-addon input-span" id="sizing-addon3">）第（</span>
                                 <input type="text" class="form-control edit-input" placeholder=""
-                                       aria-describedby="sizing-addon3"  style="width: 90px" id="property_cert_2"
+                                       aria-describedby="sizing-addon3" style="width: 90px" id="property_cert_2"
                                        maxlength="6">
                                 <span class="input-group-addon input-span" id="sizing-addon3">）号</span>
                             </div>
@@ -150,7 +152,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon6">登记日期</span>
                                 <input type="date" class="form-control edit-input" placeholder=""
-                                       aria-describedby="sizing-addon6"  ID="property_cert_register_at"
+                                       aria-describedby="sizing-addon6" ID="property_cert_register_at"
                                        maxlength="18">
                             </div>
                         </div>
@@ -191,7 +193,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">行驶证号</span>
                                 <input type="text" class="form-control" placeholder="输入行驶证号"
-                                       aria-describedby="sizing-addon3"  style="width: 220px" id="driving_license_no"
+                                       aria-describedby="sizing-addon3" style="width: 220px" id="driving_license_no"
                                        maxlength="18">
                             </div>
                         </div>
@@ -213,7 +215,7 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon input-span" id="sizing-addon3">车辆所有人</span>
                                 <input type="text" class="form-control" placeholder="输入名字"
-                                       aria-describedby="sizing-addon3"  id="driving_license_owner"
+                                       aria-describedby="sizing-addon3" id="driving_license_owner"
                                        maxlength="10">
                             </div>
                         </div>
