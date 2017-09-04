@@ -12,6 +12,14 @@
 
 <div class="dataTable_div">
     <table id="businesslog_table" class="table table-striped table-bordered hover">
+        <div class="">
+            <span>搜索从</span>
+            <input type="" id="begin_time"/>
+            <span>到</span>
+            <input type="" id="end_time"/>
+            <input type="button" class="btn btn-primary btn-xs" value="的内容" onclick="fun_filterByDateTime()">
+            <span><a href="javascript:fun_cleanDateTimeCondition()">(清除日期范围)</a></span>
+        </div>
         <thead>
         <tr>
             <th>产生时间</th>

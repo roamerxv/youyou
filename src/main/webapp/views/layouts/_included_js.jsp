@@ -55,6 +55,12 @@
 <script src="<%=request.getContextPath()%>/assets/js/lib/bootbox/bootbox.min.js"></script>
 <%----%>
 
+<%-- jQuery.dateTimePicker-2.5.4--%>
+<link href="<%=request.getContextPath()%>/assets/css/lib/jQuery.dateTimePicker-2.5.4/jquery.datetimepicker.min.css" rel="stylesheet"/>
+<script src="<%=request.getContextPath()%>/assets/js/lib/jQuery.dateTimePicker-2.5.4/jquery.datetimepicker.full.js"></script>
+<%--引入结束--%>
+
+
 <%--引入显示错误信息的组件所需要的 js 文件和 css 文件--%>
 <%@include file="../component/showExceptionJSComponent.jsp" %>
 <%--引入结束--%>

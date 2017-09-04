@@ -1,4 +1,20 @@
 $().ready(function () {
+    if ($('#begin_time').length <= 0 || $('#begin_time').length <= 0 ) {
+        Logger.error("没有定义开始时间和结束时间的 UI 组件");
+    } else {
+        var datetimepickerformat = "Y-m-d H:i"
+        jQuery.datetimepicker.setLocale('zh');
+        $('#begin_time').datetimepicker({
+            format: datetimepickerformat
+        });
+        $('#end_time').datetimepicker({
+            format: datetimepickerformat
+        });
+    }
+
+    // 设置 datatables 的错误，不做抛出。以便接管错误信息
+    $.fn.dataTable.ext.errMode = 'none';
+
     businesslog_table = $("#businesslog_table").DataTable({
         "processing": true,
         "serverSide": true,
@@ -7,6 +23,9 @@ $().ready(function () {
             url: contextPath + "/system/businesslog/getDataWithPaged",
             type: 'post',
             data: function (data) {
+                Logger.debug(data);
+                data.beginTime = $("#begin_time").val();
+                data.endTime = $("#end_time").val();
                 return JSON.stringify(data);
             },
             dataType: "json",
@@ -62,7 +81,20 @@ $().ready(function () {
             } else {
                 $('td', row).eq(10).addClass('fail_type');
             }
-        }
+        },
+
 
     });
 });
+
+
+
+function fun_filterByDateTime() {
+    businesslog_table.ajax.reload();
+};
+
+function fun_cleanDateTimeCondition() {
+    $('#begin_time').val("");
+    $('#end_time').val("");
+    return false;
+}

@@ -20,12 +20,12 @@ ext {
     springVersion = "4.3.10.RELEASE"
     springJpaVersion = "1.11.6.RELEASE"
     aspectjVersion = "1.8.10"
-    log4jVersion = "2.8.2"
+    log4jVersion = "2.9.0"
     jacksonVersion = "2.9.0"
     springDataRedisVersion = "1.8.3.RELEASE"
-    fastJsonVersion = "1.2.36"
+    fastJsonVersion = "1.2.38"
     apacheOroVersion = "2.0.8"
-    javaxServletAPIVersion = "4.0.0-b07"
+    javaxServletAPIVersion = "4.0.0"
     mysqlJavaConnectorVersion = "5.1.43"
     druidVersion = "1.1.2"
     hibernateVersion = "5.2.10.Final"
@@ -180,7 +180,7 @@ dependencies {
             //  ------------------------------
 
             // 徐泽宇的web 实用框架
-            "pers.roamer:boracay:2.0.5"
+            "pers.roamer:boracay:2.0.6"
     )
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
