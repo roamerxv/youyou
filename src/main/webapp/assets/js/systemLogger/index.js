@@ -1,5 +1,7 @@
+var businesslog_table;
+
 $().ready(function () {
-    if ($('#begin_time').length <= 0 || $('#begin_time').length <= 0 ) {
+    if ($('#begin_time') == undefined || $('#begin_time') == undefined) {
         Logger.error("没有定义开始时间和结束时间的 UI 组件");
     } else {
         var datetimepickerformat = "Y-m-d H:i"
@@ -19,14 +21,19 @@ $().ready(function () {
         "processing": true,
         "serverSide": true,
         "stateSave": true,
+        "scrollX": false,
+        "autoWidth": true,
         "ajax": {
-            url: contextPath + "/system/businesslog/getDataWithPaged",
+            url: contextPath + "/system/businesslog/getDataWithPaged.json",
             type: 'post',
             data: function (data) {
-                Logger.debug(data);
                 data.beginTime = $("#begin_time").val();
                 data.endTime = $("#end_time").val();
                 return JSON.stringify(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var responseText = JSON.parse(jqXHR.responseText);
+                showMessage("error", responseText.data[0].errorMessage);
             },
             dataType: "json",
             processData: true,
@@ -53,16 +60,14 @@ $().ready(function () {
         }, {
             "data": "clientDeviceType" // 访问设备
         }, {
-            "data": "clazz" // 调用类
-        }, {
-            "data": "method" // 调用方法
+            "data": "timeConsuming" // 调用耗时
         }, {
             "data": "success" // 调用方法
         }],
         "order": [[0, "desc"]],
         "columnDefs": [{
             "orderable": false,
-            "targets": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            "targets": [1, 2, 3, 4, 5, 6, 7, 8]
         }, {
             "render": function (data, type, row) {
                 var prompt = "";
@@ -73,21 +78,22 @@ $().ready(function () {
                 }
                 return prompt;
             },
-            "targets": 10
+            "targets": 9
         }],
         "createdRow": function (row, data, index) {
             if (data.success) {
-                $('td', row).eq(10).addClass('success_type');
+                $('td', row).eq(9).addClass('success_type');
             } else {
-                $('td', row).eq(10).addClass('fail_type');
+                $('td', row).eq(9).addClass('fail_type');
             }
         },
-
+        "dom": 'lf<"toolbar">itip', //在显示条数的部分后面插入一个 div . 查看文档 https://datatables.net/reference/option/dom
+        "fnDrawCallback": function (oSettings) {
+            $("div.toolbar").html('');
+        }
 
     });
 });
-
-
 
 function fun_filterByDateTime() {
     businesslog_table.ajax.reload();

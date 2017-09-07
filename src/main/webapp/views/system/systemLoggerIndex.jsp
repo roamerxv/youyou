@@ -11,15 +11,16 @@
 
 
 <div class="dataTable_div">
+    <div class="">
+        <span>搜索从</span>
+        <input type="" id="begin_time"/>
+        <span>到</span>
+        <input type="" id="end_time"/>
+        <input type="button" class="btn btn-primary btn-xs" value="的内容" onclick="fun_filterByDateTime()">
+        <span><a href="javascript:fun_cleanDateTimeCondition()">(清除日期范围)</a></span>
+    </div>
     <table id="businesslog_table" class="table table-striped table-bordered hover">
-        <div class="">
-            <span>搜索从</span>
-            <input type="" id="begin_time"/>
-            <span>到</span>
-            <input type="" id="end_time"/>
-            <input type="button" class="btn btn-primary btn-xs" value="的内容" onclick="fun_filterByDateTime()">
-            <span><a href="javascript:fun_cleanDateTimeCondition()">(清除日期范围)</a></span>
-        </div>
+
         <thead>
         <tr>
             <th>产生时间</th>
@@ -30,8 +31,7 @@
             <th>浏览器</th>
             <th>浏览器版本</th>
             <th>访问设备</th>
-            <th>调用类</th>
-            <th>调用方法</th>
+            <th>耗时(毫秒)</th>
             <th>运行结果</th>
         </tr>
         </thead>
@@ -45,8 +45,7 @@
             <th>浏览器</th>
             <th>浏览器版本</th>
             <th>访问设备</th>
-            <th>调用类</th>
-            <th>调用方法</th>
+            <th>耗时(毫秒)</th>
             <th>运行结果</th>
         </tr>
         </tfoot>

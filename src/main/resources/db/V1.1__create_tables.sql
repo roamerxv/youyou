@@ -49,6 +49,7 @@ CREATE TABLE `business_log` (
   `success` tinyint(4) NOT NULL COMMENT '方法是否成功运行',
   `exception_string` text COLLATE utf8_bin COMMENT '方法运行出错，抛出的exception堆栈转换成的string',
   `args` text CHARACTER SET utf8 NOT NULL,
+  `time_consuming` bigint NOT NULL  DEFAULT 0 COMMENT '方法调用耗时（毫秒）',
   `remote_ip` varchar(32) COLLATE utf8_bin DEFAULT NULL,
   `client_os` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `client_browser` varchar(255) COLLATE utf8_bin DEFAULT NULL,
@@ -57,6 +58,7 @@ CREATE TABLE `business_log` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin ROW_FORMAT=DYNAMIC COMMENT='业务方法调用日志';
+
 
 -- ----------------------------
 -- Table structure for living_type
